@@ -1,0 +1,63 @@
+<?php
+session_start();
+require_once 'config.php';
+require_once 'functions.php';
+
+$pdo = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASS);
+
+if (isset($_POST['add_fiche'])) {
+    $titre = $_POST['titre'];
+    $contenu = $_POST['contenu'];
+    $stmt = $pdo->prepare("INSERT INTO fiches (titre, contenu) VALUES (?, ?)");
+    $stmt->execute([$titre, $contenu]);
+    logAction("Ajout de la fiche : $titre");
+}
+
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $stmt = $pdo->prepare("DELETE FROM fiches WHERE id = ?");
+    $stmt->execute([$id]);
+    logAction("Suppression de la fiche ID: $id");
+}
+?>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiches de Révision</title>
+</head>
+<body>
+    <h1>Fiches de Révision</h1>
+    
+    <form method="POST">
+        <input type="text" name="titre" placeholder="Titre" required>
+        <textarea name="contenu" placeholder="Contenu" required></textarea>
+        <button type="submit" name="add_fiche">Ajouter</button>
+    </form>
+    
+    <h2>Fiches enregistrées</h2>
+    <div id="fiches-container">
+        <?php
+        $stmt = $pdo->query("SELECT * FROM fiches");
+        while ($row = $stmt->fetch()) {
+            echo "<div class='post-it' onclick='showContent(\"{$row['contenu']}\")'>{$row['titre']}</div>";
+        }
+        ?>
+    </div>
+
+    <div id="modal" class="modal">
+        <p id="modal-content"></p>
+        <button onclick="closeModal()">Fermer</button>
+    </div>
+    
+    <script>
+        function showContent(content) {
+            document.getElementById('modal-content').innerText = content;
+            document.getElementById('modal').style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
