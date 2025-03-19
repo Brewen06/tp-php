@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Fiches de révisionP</title>
+<title>Fiches de Révision</title>
 </head>
 
 <body>
@@ -22,14 +22,12 @@
     <td>
         <div class="fiche">
             <?php
-            // Adresse de la fiche à récupérer
-            $url = "http://172.16.136.5/Consulter.php";
+            $cours = "http://bases.php";
 
-            // On récupère le contenu distant
-            $contenu = @file_get_contents($url);
+            $contenu = @file_get_contents($cours);
 
             if ($contenu !== false) {
-                echo htmlspecialchars($contenu); // Protection XSS
+                echo htmlspecialchars($contenu);
             } else {
                 echo "Impossible de charger la fiche.";
             }
