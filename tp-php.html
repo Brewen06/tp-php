@@ -18,11 +18,15 @@
         </form>
         <br>
     </td>
-
+    <td>
+        <from method="post">
+            <button type="submit">Variables/fonctions/boucles</button>
+        </from>
+    </td>
     <td>
         <div class="fiche">
             <?php
-            $cours = "http://bases.php";
+            $cours = "bases.php";
 
             $contenu = @file_get_contents($cours);
 
@@ -36,6 +40,5 @@
     </td>
 </tr>
 </table>
-<hr>
 </body>
 </html>
