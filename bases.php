@@ -1,42 +1,75 @@
 <?php
-// Contenu de la fiche de révision
+// Contenu de la fiche de révision : Variables, Fonctions, Boucles en PHP
 $contenu_fiche = "
-<h2>Bases de données</h2>
-<p>Les bases de données sont des collections organisées d'informations ou de données. Elles permettent de stocker, organiser, et récupérer facilement des données selon des critères spécifiques.</p>
+<h2>Variables, Fonctions et Boucles en PHP</h2>
 
-<h3>Principaux types de bases de données :</h3>
-<ul>
-    <li><strong>Base de données relationnelle</strong> (SQL) : Utilise des tables pour stocker les données (ex : MySQL, PostgreSQL, Oracle).</li>
-    <li><strong>Base de données NoSQL</strong> : Stocke des données non structurées ou semi-structurées (ex : MongoDB, Cassandra).</li>
-    <li><strong>Base de données graphique</strong> : Spécialement conçue pour gérer des données sous forme de graphes (ex : Neo4j).</li>
-</ul>
+<h3>1. Les Variables en PHP</h3>
+<p>Une variable est une zone de stockage de données en mémoire. En PHP, une variable commence toujours par le signe <code>\$</code> suivi de son nom. Les variables peuvent contenir différents types de données : chaînes de caractères, entiers, flottants, tableaux, objets, etc.</p>
 
-<h3>Concepts clés :</h3>
-<ul>
-    <li><strong>Schéma</strong> : Structure définissant la manière dont les données sont organisées.</li>
-    <li><strong>Clé primaire</strong> : Un identifiant unique pour chaque enregistrement dans une table.</li>
-    <li><strong>Clé étrangère</strong> : Utilisée pour établir une relation entre deux tables.</li>
-    <li><strong>SQL</strong> : Langage de requêtes utilisé pour manipuler les bases de données relationnelles.</li>
-</ul>
-
-<h3>Exemples de requêtes SQL :</h3>
+<h4>Exemple de variables :</h4>
 <pre>
--- Créer une table
-CREATE TABLE Etudiants (
-    id INT PRIMARY KEY,
-    nom VARCHAR(100),
-    age INT
-);
-
--- Insérer des données
-INSERT INTO Etudiants (id, nom, age) VALUES (1, 'Pierre', 20);
-
--- Sélectionner des données
-SELECT * FROM Etudiants WHERE age > 18;
+\$nom = 'Jean';  // Chaîne de caractères
+\$age = 25;      // Entier
+\$prix = 19.99;  // Flottant
+\$est_actif = true; // Booléen
 </pre>
+
+<h3>2. Les Fonctions en PHP</h3>
+<p>Une fonction est un bloc de code réutilisable qui peut être exécuté à plusieurs reprises. En PHP, une fonction est définie avec le mot-clé <code>function</code> suivi du nom de la fonction et de ses paramètres éventuels.</p>
+
+<h4>Exemple de fonction :</h4>
+<pre>
+function saluer(\$nom) {
+    echo 'Bonjour, ' . \$nom . '!';
+}
+
+saluer('Alice'); // Affiche : Bonjour, Alice!
+</pre>
+
+<h4>Fonction avec valeur de retour :</h4>
+<pre>
+function additionner(\$a, \$b) {
+    return \$a + \$b;
+}
+
+\$resultat = additionner(5, 3); // \$resultat = 8
+</pre>
+
+<h3>3. Les Boucles en PHP</h3>
+<p>Les boucles permettent d'exécuter un bloc de code plusieurs fois. En PHP, il existe plusieurs types de boucles : <code>while</code>, <code>for</code>, <code>foreach</code>, etc.</p>
+
+<h4>Exemple de boucle <code>while</code> :</h4>
+<pre>
+\$i = 0;
+while (\$i < 5) {
+    echo \$i . '<br>';
+    \$i++; // Incrémentation
+}
+</pre>
+
+<h4>Exemple de boucle <code>for</code> :</h4>
+<pre>
+for (\$i = 0; \$i < 5; \$i++) {
+    echo \$i . '<br>';
+}
+</pre>
+
+<h4>Exemple de boucle <code>foreach</code> (idéal pour les tableaux) :</h4>
+<pre>
+\$noms = ['Alice', 'Bob', 'Charlie'];
+foreach (\$noms as \$nom) {
+    echo \$nom . '<br>';
+}
+</pre>
+
+<h3>Résumé :</h3>
+<ul>
+    <li><strong>Les variables</strong> permettent de stocker des valeurs dans la mémoire.</li>
+    <li><strong>Les fonctions</strong> regroupent du code réutilisable, acceptent des paramètres et peuvent retourner une valeur.</li>
+    <li><strong>Les boucles</strong> sont utilisées pour répéter une tâche plusieurs fois de manière itérative.</li>
+</ul>
 ";
 
 // Affichage du contenu
 echo $contenu_fiche;
 ?>
-
