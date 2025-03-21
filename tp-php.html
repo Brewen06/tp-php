@@ -20,13 +20,25 @@
     </td>
     <td>
         <from method="post">
-            <button type="submit">Variables/fonctions/boucles</button>
+            <button type="submit">Variables, fonctions et boucles</button> <!-- Var, fonc, bou // portée d'une variable // valeur ou référence // -->
+        </from> <br><br>
+		<from method="post">
+            <button type="submit">Les types et tableaux</button> <!-- types et tableaux // formulaires -->
         </from>
+		 <from method="post">
+            <button type="submit">Les erreurs et les mises à jours</button> <!-- inclure require // composer // fichier .env // exceptions -->
+        </from> <br><br>
+		 <from method="post">
+            <button type="submit">Les bases de données</button> <!-- BD // cookies et sessions // login -->
+        </from> <br><br>
     </td>
     <td>
         <div class="fiche">
             <?php
             $cours = "bases.php";
+			$cours = "types_tableaux.php";
+			$cours = "MAJ.php";
+			$cours = "BD.php";
 
             $contenu = @file_get_contents($cours);
 
