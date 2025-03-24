@@ -1,7 +1,7 @@
 <?php
 // Contenu de la fiche de révision : Variables, Fonctions, Boucles en PHP
 $contenu_fiche = "
-<h2>Variables, Fonctions et Boucles en PHP</h2>
+<h2>Fiche de révision : Variables, Fonctions et Boucles en PHP</h2>
 
 <h3>1. Les Variables en PHP</h3>
 <p>Une variable est une zone de stockage de données en mémoire. En PHP, une variable commence toujours par le signe <code>\$</code> suivi de son nom. Les variables peuvent contenir différents types de données : chaînes de caractères, entiers, flottants, tableaux, objets, etc.</p>
@@ -13,6 +13,39 @@ $contenu_fiche = "
 \$prix = 19.99;  // Flottant
 \$est_actif = true; // Booléen
 </pre>
+
+<h4>La portée d'un variable</h4>
+
+<ul>
+<li>Variable Globale
+	<ul>
+	<li>Définie en dehors d’une fonction.
+
+	<li>Accessible partout dans le script sauf dans une fonction sans déclaration spéciale.
+
+	<li>Pour l’utiliser dans une fonction, il faut la déclarer avec le mot-clé global.
+	</ul>
+<li>Variable Locale
+	<ul>
+	<li>Définie à l’intérieur d’une fonction.
+
+	<li>Accessible uniquement dans cette fonction.
+
+	<li>Elle est réinitialisée à chaque appel de la fonction.
+	</ul>
+<li>Variable Statique
+	<ul>
+	<li>Déclarée avec le mot-clé static dans une fonction.
+
+	<li>Sa valeur est conservée entre les appels de la fonction.
+	</ul>
+</ul>
+
+<h4>Par Valeur ou par Référence ?</h4>
+<ul>
+<li>Passage par valeur -> une copie est faite sans modification de l'originale.
+<li>Passage par référence -> les variables partagent la même valeur en mémoire avec modification. On utilise le symbole <code>&</code> signiafiant 'et commercial'.
+</ul>
 
 <h3>2. Les Fonctions en PHP</h3>
 <p>Une fonction est un bloc de code réutilisable qui peut être exécuté à plusieurs reprises. En PHP, une fonction est définie avec le mot-clé <code>function</code> suivi du nom de la fonction et de ses paramètres éventuels.</p>

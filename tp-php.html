@@ -14,36 +14,42 @@
 <tr>
     <td width="50%">
         <form method="post">
-            <button type="submit" name="rafraichir">Rafraîchir la fiche</button>
+            <button type="submit" name="rafraichir" style="background-color:Blue">Rafraîchir la fiche</button>
         </form>
         <br>
-    </td>
-    <td>
-        <from method="post">
-            <button type="submit">Variables, fonctions et boucles</button> <!-- Var, fonc, bou // portée d'une variable // valeur ou référence // -->
-        </from> <br><br>
-		<from method="post">
-            <button type="submit">Les types et tableaux</button> <!-- types et tableaux // formulaires -->
-        </from>
-		 <from method="post">
-            <button type="submit">Les erreurs et les mises à jours</button> <!-- inclure require // composer // fichier .env // exceptions -->
-        </from> <br><br>
-		 <from method="post">
-            <button type="submit">Les bases de données</button> <!-- BD // cookies et sessions // login -->
-        </from> <br><br>
+        <br>
+        <form method="post">
+            <button type="submit" name="fiches" value="variables_fonctions_boucles">Variables, fonctions et boucles</button>
+        </form> 
+        <br><br>
+        <form method="post">
+            <button type="submit" name="fiches" value="types_tableaux">Les types et tableaux</button>
+        </form> 
+        <br><br>
+        <form method="post">
+            <button type="submit" name="fiches" value="erreurs_MAJ">Les erreurs et les mises à jour</button>
+        </form>
+        <br><br>
+        <form method="post">
+            <button type="submit" name="fiches" value="bases_de_donnees">Les bases de données</button>
+        </form>
+        <br><br>
     </td>
     <td>
         <div class="fiche">
             <?php
-            $cours = "bases.php";
-			$cours = "types_tableaux.php";
-			$cours = "MAJ.php";
-			$cours = "BD.php";
+            // Vérification de la fiche à afficher
+            if (isset($_POST['fiches'])) {
+                $cours = $_POST['fiches'] . ".php"; // Charge le fichier en fonction du bouton cliqué
+            } else {
+                // Valeur par défaut pour la fiche
+                $cours = "types_tableaux.php";
+            }
 
             $contenu = @file_get_contents($cours);
 
             if ($contenu !== false) {
-                echo htmlspecialchars($contenu);
+                echo nl2br(htmlspecialchars($contenu));
             } else {
                 echo "Impossible de charger la fiche.";
             }
