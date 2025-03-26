@@ -60,7 +60,7 @@
            $host = 'localhost';      // Serveur MySQL
            $username = 'root';       // Nom d'utilisateur MySQL
            $password = '';           // Mot de passe (vide pour MySQL local)
-           $dbname = 'tp-php';  // Nom de la base de données que nous allons créer
+           $dbname = 'tp-php';   // Nom de la base de données que nous allons créer
            
 
             if (isset($_POST['fiche'])) {
