@@ -1,4 +1,27 @@
 <?php
+session_start();
+require 'vendor/autoload.php';
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+// Créez un journal des logs
+$log = new Logger('tp-php'); // Par exemple 'game'
+
+// Ajoutez un handler qui écrit tous les messages dans jeu-combat.log
+$log->pushHandler(new StreamHandler('logs/app.log', Logger::INFO));
+
+// Exemple d'ajout d'une ligne dans le fichier .log
+$log->info("L'utilisateur s'est connecté avec son identifiant et son mot de passe");
+
+// Exemple d'ajout d'une ligne dans le fichier .log
+$log->error("Impossible de se connecter à la base de données"); 
+// Informations de connexion à la base de données
+$host = 'localhost';      // Serveur MySQL
+$username = 'root';       // Nom d'utilisateur MySQL
+$password = '';           // Mot de passe (vide pour MySQL local)
+$dbname = 'tp-php';  // Nom de la base de données que nous allons créer
+
 // Contenu de la fiche de révision : Erreurs et mises à jours
 $contenu_fiche = "
  <h1>Fiche de révision PHP : Erreurs et Mise à jour - include, require, .env, Composer</h1>
@@ -13,13 +36,13 @@ $contenu_fiche = "
     <h2>2. Différence entre `include` et `require`</h2>
     <p>Le principal avantage de <code>require</code> est qu'il garantit l'inclusion du fichier avant l'exécution du reste du code. Si ce fichier est essentiel au bon fonctionnement de l'application, utilisez <code>require</code> pour éviter les erreurs.</p>
     <pre>
-        // Exemple d'utilisation de require
-        require 'config.php'; // Si 'config.php' est introuvable, une erreur fatale est générée
+         Exemple d'utilisation de require :
+        require 'config.php';  Si 'config.php' est introuvable, une erreur fatale est générée
     </pre>
     <p>Dans le cas de <code>include</code>, vous pouvez utiliser un mécanisme de vérification pour gérer les erreurs :</p>
     <pre>
         if (file_exists('config.php')) {
-            include 'config.php'; // Le fichier est inclus si il existe
+            include 'config.php';  Le fichier est inclus si il existe
         } else {
             echo 'Le fichier config.php est manquant';
         }
@@ -29,20 +52,20 @@ $contenu_fiche = "
     <p>Les fichiers <code>.env</code> sont utilisés pour stocker des informations sensibles, telles que les clés API, les configurations de base de données, etc., afin d'éviter de les laisser en dur dans le code source.</p>
     <p>Pour utiliser un fichier <code>.env</code> en PHP, il faut une bibliothèque comme <code>vlucas/phpdotenv</code>. Voici un exemple de configuration :</p>
     <pre>
-        // 1. Installer la bibliothèque avec Composer
+         1. Installer la bibliothèque avec Composer
         composer require vlucas/phpdotenv
 
-        // 2. Charger et utiliser les variables d'environnement dans votre code PHP
+         2. Charger et utiliser les variables d'environnement dans votre code PHP
         <?php
         require_once 'vendor/autoload.php';
 
-        // Charger les variables depuis le fichier .env
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
+         Charger les variables depuis le fichier .env
+        Sdotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        Sdotenv->load();
 
-        // Accéder à une variable d'environnement
-        $dbPassword = getenv('DB_PASSWORD');
-        echo 'Le mot de passe de la base de données est : ' . $dbPassword;
+         Accéder à une variable d'environnement
+        SdbPassword = getenv('DB_PASSWORD');
+        echo 'Le mot de passe de la base de données est : ' . SdbPassword;
         ?>
     </pre>
     <p>Dans cet exemple, le fichier <code>.env</code> pourrait ressembler à ceci :</p>
@@ -50,6 +73,9 @@ $contenu_fiche = "
         DB_PASSWORD=secret
         DB_USER=root
         DB_HOST=localhost
+        DB_NAME=jean-michel
+        MAIL_USER=jean-michel@mail.net
+        MAIL_PASS=jeanmilebg
     </pre>
 
     <h2>4. Utilisation de Composer pour la gestion des dépendances</h2>

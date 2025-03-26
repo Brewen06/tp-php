@@ -1,4 +1,27 @@
 <?php
+session_start();
+require 'vendor/autoload.php';
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+// Créez un journal des logs
+$log = new Logger('tp-php'); // Par exemple 'game'
+
+// Ajoutez un handler qui écrit tous les messages dans jeu-combat.log
+$log->pushHandler(new StreamHandler('logs/app.log', Logger::INFO));
+
+// Exemple d'ajout d'une ligne dans le fichier .log
+$log->info("L'utilisateur s'est connecté avec son identifiant et son mot de passe");
+
+// Exemple d'ajout d'une ligne dans le fichier .log
+$log->error("Impossible de se connecter à la base de données"); 
+// Informations de connexion à la base de données
+$host = 'localhost';      // Serveur MySQL
+$username = 'root';       // Nom d'utilisateur MySQL
+$password = '';           // Mot de passe (vide pour MySQL local)
+$dbname = 'tp-php';  // Nom de la base de données que nous allons créer
+
 // Contenu de la fiche de révision : Variables, Fonctions, Boucles en PHP
 $contenu_fiche = "
 <h2>Fiche de révision : Variables, Fonctions et Boucles en PHP</h2>
